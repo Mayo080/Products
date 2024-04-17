@@ -8,7 +8,6 @@ package cardBattle1;
 import java.util.*;
 
 public class Player implements Comparable<Player> {
-//	private boolean[] inHand;
 	private ArrayList<Integer> hand;
 	protected int playCard;
 	protected int score;
@@ -19,9 +18,6 @@ public class Player implements Comparable<Player> {
 	private Random rnd;
 	
 	public Player() {
-//		inHand = new boolean[15];
-//		for (int i = 0; i < 15; ++i)
-//			inHand[i] = true;
 		rnd = new Random();
 		
 		hand = new ArrayList<Integer>();
@@ -40,9 +36,6 @@ public class Player implements Comparable<Player> {
 		return this.hand;
 	}
 
-//	private boolean isInHand(int card) {
-//		return inHand[card-1];
-//	}
 	protected boolean isInHand(int card) {
 		for(int n: hand) 
 			if(n == card) return true;
@@ -113,16 +106,9 @@ public class Player implements Comparable<Player> {
 		message = "を出"
 			+ tail[rnd.nextInt(tail.length)];
 	}
-	
-	
-	
-	/*----------
-	 * テスト用メイン
-	 */
+
 	public static void main(String[] args) throws Exception {
-		// プレイヤーを作成して初期化
 		Player p = new Player();
-		// 15回手を出す
 		for(int i = 0; i < 15; ++i) {
 			p.play(15, true);
 			System.out.println( p.getCard() + " " + p.say());

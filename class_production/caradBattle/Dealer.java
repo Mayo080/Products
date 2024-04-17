@@ -61,20 +61,17 @@ public class Dealer {
 				}
 			}
 			
-			// プレイヤーのカード間の重複チェック
 			for(Player p: players) {
 				p.setDuplicate(false);
 				for(Player q: players) {
 					if(p.equals(q)) continue;
 					if(p.getCard() == q.getCard()) {
-						// 重複発見
 						p.setDuplicate(true);
 						System.out.println("プレイヤー" + p.getName() + " 重複で失格");
 					}
 				}
 			}
 			
-			// 失格者以外から勝者（場札のスコアを得る者）を決める
 			System.out.println("\n（チェック中）");
 			Player winPlay = null;
 			int sign = 1;
@@ -93,32 +90,25 @@ public class Dealer {
 			if(winPlay == null)
 				System.out.println("今回は獲得者なし！");
 			else {
-				// 勝者に場札のスコアを与える
 				winPlay.addScore(layout);
 				System.out.println("プレイヤー "+winPlay.getName() +"が，場札の"
 						+ layout + "ポイントを獲得して， "
 						+ winPlay.getScore() + "点になりました！");
 			}
 			
-			// この回に全プレイヤーが出したカードの一覧を得て，各プレイヤーに通知
 			cards.clear();
 			for(Player p: players)
 				cards.add(p.getCard());
 			for(Player p: players)
 				p.setLastCards(cards);
 			
-			// ユーザ入力待ち
 			System.out.print(">");
-//			scanner.next();
 		}
-		// 山札がなくなってゲーム終了
 		System.out.println("\n======== ゲーム終了 =========");
-		// プレイヤーが残っているか確認
 		if(players.isEmpty()) {
 			System.out.println("全員退場で勝者なし...");
 			return;
 		}
-		// 点数順に並べ替え
 		Collections.sort(players, Collections.reverseOrder());
 		for(Player p: players)
 			System.out.println(p.getName() + " (" + p.getScore() + "　点)");
@@ -130,12 +120,9 @@ public class Dealer {
 	public static void main(String[] args) {
 		ArrayList<Player> players = new ArrayList<>();
 		
-		// 各学生のプレイヤーのインスタンスを生成してリストに詰める
-//		players.add(new PlayerHuman());
 		players.add(new Player0124());
 		players.add(new Player());
 		
-		// ディーラーを初期化して起動
 		Dealer d = new Dealer(players);
 		d.game();
 		
